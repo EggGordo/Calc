@@ -72,12 +72,12 @@ if __name__ == "__main__":
     equation = StringVar()
     #create frame and grid
     #create display and make it the highest object
-    Disp=Entry(root,textvariable=equation,background="Grey",width=48)
+    Disp=Entry(root,textvariable=equation,background="Grey",width=56)
     Disp.grid(column=0,row=0,columnspan=4)
-    #numpad buttons8
+    #numpad buttons
     #like a normal numpad, the 0 button is twice as wide as the others. Adjusting the width of the button affects the width of the row without columnwidth
     #default button size is 12, expands based on amount of text needed to display(?)
-    button0=Button(root,text="0",width=24,takefocus=0,command=lambda:type(0)).grid(column=0,columnspan=2,row=20)
+    button0=Button(root,text="0",width=26,takefocus=0,command=lambda:type(0)).grid(column=0,columnspan=2,row=20)
     buttonDec=Button(root,text=".",takefocus=0,width=12,command=lambda:type('.')).grid(column=2,row=20)
     button1=Button(root,text="1",takefocus=0,width=12,command=lambda:type(1)).grid(column=0,row=19)
     button2=Button(root,text="2",takefocus=0,width=12,command=lambda:type(2)).grid(column=1,row=19)
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     #exit button
     #do I even need it? window will be big enough for x button to appear at top(?)
     #yes, leave it
-    buttonExit=Button(root,text="Exit",command=root.destroy).grid(column=3,row=21)
+    buttonExit=Button(root,text="Exit",command=root.destroy,width=12).grid(column=3,row=21)
 
     #call window in
     root.mainloop()
