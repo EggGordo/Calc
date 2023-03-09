@@ -1,59 +1,75 @@
 #calculator main
 #define functions in calcFunc.py
-from tkinter import ttk
 from tkinter import *
 import calcFunc
-root = Tk(screenName="Calculator")
+expression= ""
+def type(val):
+    global expression
+    expression = expression + str(val)
+    equation.set(expression)
+
+def eqPress():
+    try:
+        global expression
+        total = str(eval(expression))
+        equation.set(total)
+        expression = ""
+    except:
+        equation.set('Error')
+        expression = ""
+
+def clear():
+    global expression
+    expression = ""
+    equation.set("")
+
 # ths section checks if tkinter is working, "hello world" type
 # def main():
-#     frm = ttk.Frame(root, padding=10)
-#     frm.grid()
-#     ttk.Label(frm, text="I am working").grid(column=0,row=0)
-#     ttk.Button(frm, text="kill me",command=root.destroy).grid(column=1,row=0)
+#     root = ttk.Frame(root, padding=10)
+#     root.grid()
+#     ttk.Label(root, text="I am working").grid(column=0,row=0)
+#     ttk.Button(root, text="kill me",command=root.destroy).grid(column=1,row=0)
 #     root.mainloop()
 
 #main calc function
-def main():
+if __name__ == "__main__":
+    root = Tk()
+    root.title('Calculator')
+    equation = StringVar()
     #create frame and grid
-    dispVal = float
-    dispVal = 0
-    defDispVal = 0
-    frm=ttk.Frame(root,padding=10)
-    frm.grid()
     #create display and make it the highest object
-    Disp=ttk.Entry(frm,textvariable=dispVal,background="Grey",width=48)
+    Disp=Entry(root,textvariable=equation,background="Grey",width=48)
     Disp.grid(column=0,row=0,columnspan=4)
-    #numpad buttons
+    #numpad buttons8
     #like a normal numpad, the 0 button is twice as wide as the others. Adjusting the width of the button affects the width of the row without columnwidth
     #default button size is 12, expands based on amount of text needed to display(?)
-    ttk.Button(frm,text="0",width=24,takefocus=0).grid(column=0,columnspan=2,row=20)
-    ttk.Button(frm,text=".",takefocus=0).grid(column=2,row=20)
-    ttk.Button(frm,text="1",takefocus=0).grid(column=0,row=19)
-    ttk.Button(frm,text="2",takefocus=0).grid(column=1,row=19)
-    ttk.Button(frm,text="3",takefocus=0).grid(column=2,row=19)
-    ttk.Button(frm,text="4",takefocus=0).grid(column=0,row=18)
-    ttk.Button(frm,text="5",takefocus=0).grid(column=1,row=18)
-    ttk.Button(frm,text="6",takefocus=0).grid(column=2,row=18)
-    ttk.Button(frm,text="7",takefocus=0).grid(column=0,row=17)
-    ttk.Button(frm,text="8",takefocus=0).grid(column=1,row=17)
-    ttk.Button(frm,text="9",takefocus=0).grid(column=2,row=17)
+    button0=Button(root,text="0",width=24,takefocus=0,command=lambda:type(0)).grid(column=0,columnspan=2,row=20)
+    buttonDec=Button(root,text=".",takefocus=0,width=12,command=lambda:type('.')).grid(column=2,row=20)
+    button1=Button(root,text="1",takefocus=0,width=12,command=lambda:type(1)).grid(column=0,row=19)
+    button2=Button(root,text="2",takefocus=0,width=12,command=lambda:type(2)).grid(column=1,row=19)
+    button3=Button(root,text="3",takefocus=0,width=12,command=lambda:type(3)).grid(column=2,row=19)
+    button4=Button(root,text="4",takefocus=0,width=12,command=lambda:type(4)).grid(column=0,row=18)
+    button5=Button(root,text="5",takefocus=0,width=12,command=lambda:type(5)).grid(column=1,row=18)
+    button6=Button(root,text="6",takefocus=0,width=12,command=lambda:type(6)).grid(column=2,row=18)
+    button7=Button(root,text="7",takefocus=0,width=12,command=lambda:type(7)).grid(column=0,row=17)
+    button8=Button(root,text="8",takefocus=0,width=12,command=lambda:type(8)).grid(column=1,row=17)
+    button9=Button(root,text="9",takefocus=0,width=12,command=lambda:type(9)).grid(column=2,row=17)
     #now for the function buttons
-    ttk.Button(frm,text="=",takefocus=0).grid(column=3,row=20)
-    ttk.Button(frm,text="+",takefocus=0).grid(column=3,row=19)
-    ttk.Button(frm,text="-",takefocus=0).grid(column=3,row=18)
-    ttk.Button(frm,text="*",takefocus=0).grid(column=3,row=17)
-    ttk.Button(frm,text="/",takefocus=0).grid(column=3,row=16)
-    ttk.Button(frm,text="Sqrt",takefocus=0).grid(column=2,row=16)
-    ttk.Button(frm,text="CuSqrt",takefocus=0).grid(column=1,row=16)
-    ttk.Button(frm,text="Exp",takefocus=0).grid(column=0,row=16)
-    ttk.Button(frm,text="Clear",takefocus=0).grid(column=2,row=21)
+    #why does = and clear functions not need ()? breaks if added, like they dont exist. Must be a python thing
+    buttonEq=Button(root,text="=",takefocus=0,width=12,command=eqPress).grid(column=3,row=20)
+    buttonPlus=Button(root,text="+",takefocus=0,width=12,command=lambda:type('+')).grid(column=3,row=19)
+    buttonMinus=Button(root,text="-",takefocus=0,width=12,command=lambda:type('-')).grid(column=3,row=18)
+    buttonMult=Button(root,text="*",takefocus=0,width=12,command=lambda:type('*')).grid(column=3,row=17)
+    buttonDiv=Button(root,text="/",takefocus=0,width=12,command=lambda:type('/')).grid(column=3,row=16)
+    buttonSqrt=Button(root,text="Sqrt",takefocus=0,width=12,state=DISABLED).grid(column=2,row=16)
+    buttonCuSqrt=Button(root,text="CuSqrt",takefocus=0,width=12,state=DISABLED).grid(column=1,row=16)
+    buttonExp=Button(root,text="Exp",takefocus=0,width=12,state=DISABLED).grid(column=0,row=16)
+    buttonClear=Button(root,text="Clear",takefocus=0,width=12,command=clear).grid(column=2,row=21)
 
     #exit button
     #do I even need it? window will be big enough for x button to appear at top(?)
     #yes, leave it
-    ttk.Button(frm,text="Exit",command=root.destroy).grid(column=3,row=21)
+    buttonExit=Button(root,text="Exit",command=root.destroy).grid(column=3,row=21)
 
     #call window in
     root.mainloop()
-
-main()
