@@ -13,8 +13,7 @@ def div(num1,num2):
     ans = num1 / num2
     return ans
 def sqr(num1):
-    ans = math.sqrt(num1)
-    return ans
+    return math.sqrt(num1)
 def csqr(num1):
     ans = math.cbrt(num1)
     return ans

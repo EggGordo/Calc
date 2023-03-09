@@ -1,7 +1,9 @@
 #calculator main
 #define functions in calcFunc.py
 from tkinter import *
-import calcFunc
+import calcFunc #this had a purpose, but math does it better, plus I just used the math lib there
+import math
+#yea I imported the math library
 expression= ""
 def type(val):
     global expression
@@ -22,6 +24,39 @@ def clear():
     global expression
     expression = ""
     equation.set("")
+
+def sqrt():
+    try:
+        global expression
+        expression = float(expression)
+        result = str(math.sqrt(expression))
+        equation.set(result)
+        expression=""
+    except:
+        equation.set('Error')
+        expression=""
+
+def cuSqrt():
+    try:
+        global expression
+        expression = float(expression)
+        result= str(math.cbrt(expression))
+        equation.set(result)
+        expression=""
+    except:
+        equation.set('Error')
+        expression=""
+
+def square():
+    try:
+        global expression
+        expression = float(expression)
+        result = str(math.pow(expression,2))
+        equation.set(result)
+        expression=""
+    except:
+        equation.set("Error")
+        expression=""
 
 # ths section checks if tkinter is working, "hello world" type
 # def main():
@@ -61,9 +96,9 @@ if __name__ == "__main__":
     buttonMinus=Button(root,text="-",takefocus=0,width=12,command=lambda:type('-')).grid(column=3,row=18)
     buttonMult=Button(root,text="*",takefocus=0,width=12,command=lambda:type('*')).grid(column=3,row=17)
     buttonDiv=Button(root,text="/",takefocus=0,width=12,command=lambda:type('/')).grid(column=3,row=16)
-    buttonSqrt=Button(root,text="Sqrt",takefocus=0,width=12,state=DISABLED).grid(column=2,row=16)
-    buttonCuSqrt=Button(root,text="CuSqrt",takefocus=0,width=12,state=DISABLED).grid(column=1,row=16)
-    buttonExp=Button(root,text="Exp",takefocus=0,width=12,state=DISABLED).grid(column=0,row=16)
+    buttonSqrt=Button(root,text="Sqrt",takefocus=0,width=12,command=sqrt).grid(column=2,row=16)
+    buttonCuSqrt=Button(root,text="CuSqrt",takefocus=0,width=12,command=cuSqrt).grid(column=1,row=16)
+    buttonExp=Button(root,text="Square",takefocus=0,width=12).grid(column=0,row=16)
     buttonClear=Button(root,text="Clear",takefocus=0,width=12,command=clear).grid(column=2,row=21)
 
     #exit button
