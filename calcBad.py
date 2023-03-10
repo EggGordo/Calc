@@ -1,5 +1,4 @@
 #can I make an even shittier one (for practice)
-import calcFunc as calc
 from tkinter import ttk
 from tkinter import *
 funcSelVal = 0

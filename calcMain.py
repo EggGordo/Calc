@@ -1,7 +1,6 @@
 #calculator main
 #define functions in calcFunc.py
 from tkinter import *
-import calcFunc #this had a purpose, but math does it better, plus I just used the math lib there
 import math
 #yea I imported the math library
 expression= ""
